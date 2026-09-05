@@ -3,9 +3,9 @@
 # SISTEMAS OPERATIVOS II - 2026
 # TRABAJO PRÁCTICO N° 0: Introducción a Linux, Shell y Git
 # ==============================================================================
-# Nombre del Alumno: 
-# Legajo: 
-# Usuario de GitHub: 
+# Nombre del Alumno: Ruben Daniel Mendoza
+# Legajo: 8108
+# Usuario de GitHub: RubenMen49
 # ==============================================================================
 # INSTRUCCIONES:
 # 1. Complete cada una de las funciones con los comandos de Bash necesarios.
@@ -29,7 +29,10 @@
 ejercicio1_estructura() {
     echo "Ejecutando Ejercicio 1..."
     # TODO: Escriba sus comandos aquí debajo
-    
+    mkdir -p soluciones/entorno/{config,logs,backup}
+    touch soluciones/entorno/config/app.conf
+    touch soluciones/entorno/config/version.txt
+    echo "Sistemas Operativos II - 2026" > soluciones/entorno/config/version.txt
 }
 
 # ------------------------------------------------------------------------------
@@ -45,7 +48,8 @@ ejercicio1_estructura() {
 ejercicio2_redirecciones() {
     echo "Ejecutando Ejercicio 2..."
     # TODO: Escriba sus comandos aquí debajo
-    
+    head -n 15 datos/servidores.log > soluciones/primeros_15.log
+    wc -l < datos/servidores.log | tr -d ' ' > soluciones/total_lineas.txt
 }
 
 # ------------------------------------------------------------------------------
@@ -62,7 +66,7 @@ ejercicio2_redirecciones() {
 ejercicio3_tuberias() {
     echo "Ejecutando Ejercicio 3..."
     # TODO: Escriba sus comandos aquí debajo
-    
+    grep "ERROR" datos/servidores.log | cut -d' ' -f2 | sort -u > soluciones/ips_con_error.txt
 }
 
 # ------------------------------------------------------------------------------
@@ -81,7 +85,7 @@ ejercicio3_tuberias() {
 ejercicio4_usuarios() {
     echo "Ejecutando Ejercicio 4..."
     # TODO: Escriba sus comandos aquí debajo
-    
+    grep "Sistemas,true" datos/usuarios.csv | cut -d',' -f2 | sort > soluciones/usuarios_sistemas_activos.txt
 }
 
 # ------------------------------------------------------------------------------
@@ -99,7 +103,16 @@ ejercicio4_usuarios() {
 ejercicio5_script_reporte() {
     echo "Ejecutando Ejercicio 5..."
     # TODO: Escriba sus comandos aquí debajo
-    
+
+    cat << 'EOF' > soluciones/generar_reporte.sh
+#!/usr/bin/env bash
+echo "=== REPORTE DEL SISTEMA ==="
+date
+echo "Usuario: $(whoami)"
+EOF
+    chmod +x soluciones/generar_reporte.sh
+
+
 }
 
 # ------------------------------------------------------------------------------
